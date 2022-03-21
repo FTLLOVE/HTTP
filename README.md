@@ -57,6 +57,14 @@ HTTP举例来说明，首先作为发送端的客户端在应用层发出一个�
 > IP 间的通信依赖 MAC 地址。在网络上，通信的双方在同一局域网 （LAN）内的情况是很少的，通常是经过多台计算机和网络设备中转 才能连接到对方。而在进行中转时，会利用下一站中转设备的 MAC 地址来搜索下一个中转目标。这时，会采用 ARP 协议（Address Resolution Protocol）。ARP 是一种用以解析地址的协议，根据通信方 的 IP 地址就可以反查出对应的 MAC 地址。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/48c911ad603846d08e4263be708327f1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBARlRMX0RZQw==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
+### 确保可靠性的 TCP 协议
+> 按层次分，TCP 位于传输层，提供可靠的字节流服务。 
+> 所谓的字节流服务（Byte Stream Service）是指，为了方便传输，将大 块数据分割成以报文段（segment）为单位的数据包进行管理。而可 靠的传输服务是指，能够把数据准确可靠地传给对方。一言以蔽之， TCP 协议为了更容易传送大数据才把数据分割，而且 TCP 协议能够 确认数据最终是否送达到对方。
+确保数据能到达目标 为了准确无误地将数据送达目标处，TCP 协议采用了三次握手 （three-way handshaking）策略。用 TCP 协议把数据包送出去后，TCP 不会对传送后的情况置之不理，它一定会向对方确认是否成功送达。握手过程中使用了 TCP 的标志（flag） —— SYN（synchronize） 和 ACK（acknowledgement）。
+发送端首先发送一个带 SYN 标志的数据包给对方。接收端收到后， 回传一个带有 SYN/ACK 标志的数据包以示传达确认信息。最后，发送端再回传一个带 ACK 标志的数据包，代表“握手”结束。
+若在握手过程中某个阶段莫名中断，TCP 协议会再次以相同的顺序发 送相同的数据包。
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/90ab212de4424b6f9613d5c986b5d0dd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBARlRMX0RZQw==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 
 **未完待续...**
